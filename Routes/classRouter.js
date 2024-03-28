@@ -18,10 +18,10 @@ router
     validatonResult,
     controller.insertClass
   )
-  .patch(updateValidator, validatonResult, controller.updateClass)
-  .delete(controller.deleteClass);
+  .patch(updateValidator, validatonResult, controller.updateClass);
+  
 
-router.route("/class/:id").get( classIdValidator, validatonResult,controller.getClassById);
+router.route("/class/:id").get( classIdValidator, validatonResult,controller.getClassById).delete(controller.deleteClass);
 router.route("/class/child/:id").get( validateChildId, validatonResult, controller.getClassChildrenInfo);
 router.route("/class/teacher/:id").get( validateTeacherId, validatonResult, controller.getClassTeacherInfo);
 

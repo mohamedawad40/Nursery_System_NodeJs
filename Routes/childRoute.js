@@ -22,10 +22,9 @@ router
     validatonResult,
     controller.insertChild
   )
-  .patch(updateValidator, validatonResult, controller.updateChild)
-  .delete(controller.deleteChild);
+  .patch(updateValidator, validatonResult, controller.updateChild);
 
-router.route("/child/:id").get(childIdvalidator,validatonResult,controller.getChildById);
+router.route("/child/:id").get(childIdvalidator,validatonResult,controller.getChildById).delete(controller.deleteChild);
 
 
 module.exports = router;
