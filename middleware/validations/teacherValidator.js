@@ -17,9 +17,9 @@ exports.insertValidator = [
     .isEmail()
     .withMessage("Email should be a valid email address"),
 
-  body("image")
-    .isString()
-    .withMessage("Image should be a string"),
+  // body("image")
+  //   .isString()
+  //   .withMessage("Image should be a string"),
 ];
 
 
@@ -53,9 +53,9 @@ exports.validateId = [
 ];
 
 // {
-//   "id":  "603d99cbeeb29842146b157a", //
-//   "fullname": "John Doe",
-//   "password": "examplePassword123",
+//   "id":  "603d99cbeeb29842146b157a", 
+//   "fullname": "awad",
+//   "password": "123",
 //   "email": "johndoe@example.com",
 //   "image": "https://example.com/profile_image.jpg"
 // }
