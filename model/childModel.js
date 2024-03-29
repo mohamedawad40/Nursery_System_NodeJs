@@ -17,6 +17,7 @@ const childSchema = new Schema({
     fullName: { type: String },
     age: { type: Number },
     level: { type: String, enum: ["PreKG", "KG1", "KG2"] },
+    image: {type:String},
     address: addressSchema
 });
 
