@@ -11,7 +11,7 @@ exports.insertValidator = [
     .withMessage("Name should be a string"),
 
   body("supervisor")
-    .isInt()
+    .isMongoId()
     .withMessage("Supervisor ID should be an integer"),
 
   body("children")
@@ -70,3 +70,20 @@ exports.classIdValidator = [
 //   "supervisor": 123, 
 //   "children": [1, 2, 3] 
 // }
+
+
+
+// {
+//   "_id": 123,
+//   "name": "Class A",
+//   "supervisor": "503d99cbeeb29872146b157a", // Example supervisor ObjectId
+//   "children": ["1234"] // Example child ObjectIds
+// }
+
+
+// {
+//     "_id": 12,
+//     "name": "Class A",
+//     "supervisor": "503d99cbeeb29872146b157a", // Example supervisor ObjectId
+//     "children": ["1234","2"] // Example child ObjectIds
+//   }
