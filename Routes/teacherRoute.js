@@ -82,14 +82,25 @@
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Teacher'
+ *               type: object
+ *             properties:
+ *               fullname:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               image:
+ *                 type: string
+ *               role:
+ *                 type: string  
  *       responses:
  *         200:
  *           description: New teacher created
  *           content:
  *             application/json:
  *               schema:
- *                 $ref: '#/components/schemas/Teacher'
+ *                 type: object
  *         400:
  *           description: Bad request
  *         500:
@@ -117,7 +128,7 @@
  *           content:
  *             application/json:
  *               schema:
- *                 $ref: '#/components/schemas/Teacher'
+ *                 type: object
  *         404:
  *           description: Teacher not found
  *         500:
