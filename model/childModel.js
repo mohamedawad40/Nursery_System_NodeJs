@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const Schema = mongoose.Schema;
 
@@ -20,5 +21,8 @@ const childSchema = new Schema({
     image: {type:String},
     address: addressSchema
 });
+
+// childSchema.plugin(AutoIncrement, {inc_field: '_id'});
+childSchema.plugin(AutoIncrement, { id: "child", incField: "_id" });
 
 module.exports = mongoose.model("children", childSchema);
