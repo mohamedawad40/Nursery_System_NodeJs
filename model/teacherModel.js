@@ -13,7 +13,16 @@ const schema = new mongoose.Schema({
 
 
   schema.pre( "save", async function (next) {
-      const salt=await bcrypt.genSaltSync();
+      
+    if (this.role === 'admin') {
+        const existingAdmin = await this.constructor.findOne({ role: 'admin' });
+        if (existingAdmin) {
+            throw new Error('An admin already exists. Only one admin is allowed.');
+        }
+    }
+    
+    
+    const salt=await bcrypt.genSaltSync();
       this.password= bcrypt.hashSync(this.password,salt);
       next();
   })
