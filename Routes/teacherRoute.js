@@ -45,16 +45,15 @@
  *         - Teachers
  *       summary: Get all teachers
  *       security:
- *         - bearerAuth: []
+ *         - apiKey: []
  *       produces:
  *         - application/json
  *       parameters:
- *         - name: token
- *           in: path
+ *         - in: query
+ *           name: apiKey
+ *           type: string
  *           description: Access token
- *           required: false
- *           schema:
- *             type: string
+ *           required: true
  *       responses:
  *         200:
  *           description: List of all teachers
@@ -72,7 +71,7 @@
  *         - Teachers
  *       summary: Create a new teacher
  *       security:
- *         - bearerAuth: []
+ *         - apiKey: []
  *       consumes:
  *         - application/json
  *       produces:
@@ -112,7 +111,7 @@
  *         - Teachers
  *       summary: Get teacher by ID
  *       security:
- *         - bearerAuth: []
+ *         - apiKey: []
  *       produces:
  *         - application/json
  *       parameters:
@@ -138,7 +137,7 @@
  *         - Teachers
  *       summary: Delete teacher by ID
  *       security:
- *         - bearerAuth: []
+ *         - apiKey: []
  *       parameters:
  *         - name: id
  *           in: path
@@ -153,6 +152,12 @@
  *           description: Teacher not found
  *         500:
  *           description: Internal server error
+ *
+ *       securityDefinitions:
+ *            apiKey:
+ *            type: apiKey
+ *            in: header
+ *            name: x-api-key
  */
 
 

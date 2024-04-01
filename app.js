@@ -28,13 +28,27 @@ const options = {
       title: 'NurserySystem Documentation', 
       version: '1.0.0', 
       description:
-      "The Nursery System project aims to provide a simple yet effective management system for a nursery. The system will have one administrator who will have access to add teachers and children to the system. once registered, they can log in to access their account. The administrator will be responsible for adding children to the system, assigning them to specific teachers, and managing other administrative tasks.EndFragment"
+      "The Nursery System project aims to provide a simple yet effective management system for a nursery. The system will have one administrator who will have access to add teachers and children to the system. once registered, they can log in to access their account. The administrator will be responsible for adding children to the system, assigning them to specific teachers, and managing other administrative tasks."
     },
-    
+    security: [
+      {
+        apiKeyAuth: []
+      }
+    ],
+    components: {
+      securitySchemes: {
+        apiKeyAuth: {
+          type: 'apiKey',
+          in: 'header',
+          name: 'x-api-key'
+        }
+      }
+    }
   },
   // Path to the API docs
   apis: ['./Routes/*.js'], // Path to the API docs
 };
+
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -52,6 +66,15 @@ const fileFilter=(req , file , cb)=>{
         cb(new Error("Invalid image type"), false);
     }
 }
+// const storage = multer.memoryStorage();
+
+// const fileFilter = (req, file, cb) => {
+//     if (file.mimetype === "image/jpeg" || file.mimetype === "image/png" || file.mimetype === "image/jpg") {
+//         cb(null, true);
+//     } else {
+//         cb(new Error("Invalid image type"), false);
+//     }
+// }
 
 const specs = swaggerJsdoc(options);
 
