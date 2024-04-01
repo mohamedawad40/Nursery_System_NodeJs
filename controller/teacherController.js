@@ -67,13 +67,46 @@ exports.updateTeacher = (req, res, next) => {
 };
 
 
-  exports.deleteTeacher = (req, res, next) => {
-    TeacherSchema.findByIdAndDelete(req.params.id)
-      .then(() => {
-        res.status(200).json({ message: "Teacher deleted successfully" });
-      })
-      .catch((error) => next(error));
-  };
+exports.deleteTeacher = (req, res, next) => {
+  const id = req.params.id;
+
+  TeacherSchema.findById(id)
+    .then(teacher => {
+      if (!teacher) {
+        res.status(404).json({ data: "Teacher not found" });
+        return;
+      }
+
+      // Check if the teacher is supervising any classes
+      ClassSchema.find({ supervisor: id })
+        .then(classes => {
+          if (classes.length > 0) {
+            
+            TeacherSchema.findOne({ _id: { $ne: id } })
+              .then(defaultSupervisor => {
+                ClassSchema.updateMany({ supervisor: id }, { supervisor: defaultSupervisor._id })
+                  .then(() => {
+                    TeacherSchema.findByIdAndDelete(id)
+                      .then(() => {
+                        res.status(200).json({ data: "Teacher deleted" });
+                      })
+                      .catch(error => next(error));
+                  })
+                  .catch(error => next(error));
+              })
+              .catch(error => next(error));
+          } else {
+            TeacherSchema.findByIdAndDelete(id)
+              .then(() => {
+                res.status(200).json({ data: "Teacher deleted" });
+              })
+              .catch(error => next(error));
+          }
+        })
+        .catch(error => next(error));
+    })
+    .catch(error => next(error));
+};
   
 
   exports.getAllSupervisors = (req, res, next) => {
