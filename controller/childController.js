@@ -59,19 +59,6 @@ exports.updateChild = (req, res, next) => {
         .catch((err) => next(err));
 };
 
-// exports.updateChild = (req, res, next) => {
-//     const id = req.body._id;
-//     ChildSchema.findByIdAndUpdate(id, req.body, { new: true })
-//         .then((data) => {
-//             if (!data) {
-//                 res.status(404).json({ message: "Child not found" });
-//             }
-//             res.status(200).json({ data: "updated" });
-//         })
-//         .catch((err) => next(err));
-//     // res.status(200).json({ data: "updated" });
-// };
-
 exports.deleteChild = (req, res, next) => {
     ChildSchema.findByIdAndDelete(req.params.id)
         .then(() => {
