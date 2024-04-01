@@ -29,7 +29,7 @@ exports.login = (req, res, next) => {
                     } else {
                         // Passwords don't match, authentication failed
                         // throw new Error("Invalid password");
-                        res.json({ message: "not1Authenticated" });
+                        res.json({ message: "notAuthenticated" });
                     }
                 })
                 .catch((error) => {
