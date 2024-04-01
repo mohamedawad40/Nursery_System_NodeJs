@@ -25,6 +25,15 @@ exports.getClassById = (req, res, next) => {
         .catch((error) => next(error));
 };
 
+// exports.insertClass = (req, res, next) => {
+//     let object = new ClassSchema(req.body);
+//     object.save()
+//         .then((data) => {
+//             res.status(200).json({ data });
+//         })
+//         .catch((error) => next(error));
+// };
+
 exports.insertClass = async (req, res, next) => {
     try {
         // Check if the supervisor exists
@@ -74,6 +83,7 @@ exports.updateClass = async (req, res, next) => {
         })
         .catch((err) => next(err));
 
+    // res.status(200).json({ data: "updated" });
 };
 
 exports.deleteClass = (req, res, next) => {
@@ -97,6 +107,9 @@ exports.getClassChildrenInfo = (req, res, next) => {
             res.status(200).json(data);
         })
         .catch((err) => next(err));
+
+
+    // res.status(200).json({ data: req.params });
 }
 
 
@@ -110,5 +123,6 @@ exports.getClassTeacherInfo = (req, res, next) => {
             res.status(200).json(data);
         })
         .catch((err) => next(err));
+    // res.status(200).json({ data: req.params });
 }
 

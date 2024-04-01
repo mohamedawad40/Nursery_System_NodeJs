@@ -17,17 +17,17 @@ exports.insertValidator = [
     .isIn(["PreKG", "KG1", "KG2"])
     .withMessage("Level should be one of: PreKG, KG1, KG2"),
 
-  body("address.city")
-    .isString()
-    .withMessage("City should be a string"),
+  // body("address.city")
+  //   .isString()
+  //   .withMessage("City should be a string"),
 
-  body("address.street")
-    .isString()
-    .withMessage("Street should be a string"),
+  // body("address.street")
+  //   .isString()
+  //   .withMessage("Street should be a string"),
 
-  body("address.building")
-    .isString()
-    .withMessage("Building should be a string")
+  // body("address.building")
+  //   .isString()
+  //   .withMessage("Building should be a string")
 ];
 
 
